@@ -1,0 +1,15 @@
+​# 判断要提取的主成分数
+fa.parallel(Harman23.cor$cov,n.obs=302,fa="pc",n.iter=100,show.legend=TRUE,main="Scree plot with parallel analysis")
+abline(h=1)
+
+# 提取主成分
+pc<-principal(Harman23.cor$cov,nfactors=2,rotate="none")
+pc
+
+​# 主成分旋转​
+rc<-principal(Harman23.cor$cov,nfactors=2,rotate="varimax")
+rc
+
+# 获取主成分得分的系数
+rc<-principal(Harman23.cor$cov,nfactors=2,rotate="varimax")
+round(unclass(rc$weights),2)
