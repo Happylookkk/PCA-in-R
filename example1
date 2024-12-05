@@ -1,0 +1,17 @@
+# 判断需提取的主成分数​
+## 基于观测特征值的碎石检验（由线段和符号x组成）、根据100个随机数矩阵推导出来的特征值均值（虚线），以及大于1的特征值准测
+library(psych)
+fa.parallel(USJudgeRatings[,-1],fa="pc",n.iter=100,show.legend=TRUE,main="Scree plot with parallel analysis")
+abline(h=1)
+
+​# 提取主成分​
+## 获取第一主成分
+library(psych)
+pc<-principal(USJudgeRatings[,-1],nfactors=1)
+pc
+
+​# 获取主成分得分​
+pc<-principal(USJudgeRatings[,-1],nfactors=1,score=TRUE)
+head(pc$scores)
+# 获得律师与法官的接触次数与法官得分间的相关系数​
+cor(USJudgeRatings$CONT,pc$score)
